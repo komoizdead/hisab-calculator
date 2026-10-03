@@ -1,0 +1,43 @@
+{
+  "name": "hisab-calculator",
+  "version": "1.0.0",
+  "description": "An easy-to-use Bengali calculator PWA with Bengali numerals, calculation history, and quick VAT calculations.",
+  "keywords": [
+    "calculator",
+    "bengali",
+    "bangla",
+    "vat",
+    "tax",
+    "finance",
+    "pwa"
+  ],
+  "homepage": "https://github.com/komoizdead/hisab-calculator#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/komoizdead/hisab-calculator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/komoizdead/hisab-calculator/issues"
+  },
+  "files": [
+    "bin/",
+    "index.html",
+    "style.css",
+    "script.js",
+    "service-worker.js",
+    "manifest.webmanifest",
+    "icon.svg",
+    "README.md"
+  ],
+  "bin": {
+    "hisab-calculator": "bin/hisab-calculator.cjs"
+  },
+  "scripts": {
+    "start": "node bin/hisab-calculator.cjs",
+    "test": "node --test",
+    "pack:check": "npm pack --dry-run"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

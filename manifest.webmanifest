@@ -1,0 +1,21 @@
+{
+  "name": "হিসাব ক্যালকুলেটর",
+  "short_name": "হিসাব",
+  "description": "বাংলা ভাষায় দ্রুত হিসাব, ভ্যাট ও কর গণনা করুন।",
+  "lang": "bn",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f9f2",
+  "theme_color": "#8bbd24",
+  "categories": ["finance", "utilities"],
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

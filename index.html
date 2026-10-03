@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#8bbd24" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="হিসাব" />
+    <title>হিসাব | Calculator</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="festival-backdrop" aria-hidden="true">
+      <div class="festival-sun"></div>
+      <div class="random-circle random-circle-one"></div>
+      <div class="random-circle random-circle-two"></div>
+      <div class="random-circle random-circle-three"></div>
+      <div class="alpana alpana-left"></div>
+      <div class="alpana alpana-right"></div>
+      <div class="festival-banner">শুভ নববর্ষ</div>
+      <div class="festival-leaf leaf-one"></div>
+      <div class="festival-leaf leaf-two"></div>
+      <div class="canvas-line canvas-line-left"></div>
+      <div class="canvas-line canvas-line-right"></div>
+      <div class="canvas-line canvas-line-long canvas-line-left-long"></div>
+      <div class="canvas-line canvas-line-long canvas-line-right-long"></div>
+      <div class="festival-confetti confetti-one">✦</div>
+      <div class="festival-confetti confetti-two">•</div>
+      <div class="festival-confetti confetti-three">✦</div>
+      <div class="festival-confetti confetti-four">•</div>
+    </div>
+    <main class="app-shell">
+      <section class="calculator-card" aria-label="হিসাব ক্যালকুলেটর">
+        <header class="topbar">
+          <div class="brand-mark flag-mark" role="img" aria-label="বাংলাদেশের পতাকা" title="বাংলাদেশ"></div>
+          <div>
+            <p class="eyebrow">সহজ হিসাব</p>
+            <h1>ক্যালকুলেটর</h1>
+          </div>
+          <div class="status-dot" title="সক্রিয়"></div>
+        </header>
+
+        <div class="display-panel">
+          <div class="display-meta">
+            <span id="expressionPreview">প্রস্তুত</span>
+            <span class="live-label">লাইভ</span>
+          </div>
+          <output id="display" class="display-value" aria-live="polite">০</output>
+          <p id="resultWords" class="result-words" aria-live="polite"></p>
+        </div>
+
+        <div class="tax-toolbar" aria-label="ভ্যাট ও করের দ্রুত হিসাব">
+          <div>
+            <span class="tax-label">দ্রুত ভ্যাট</span>
+            <span class="tax-caption">মোটের সঙ্গে যোগ করুন</span>
+          </div>
+          <div class="tax-options" role="group" aria-label="ভ্যাটের হার">
+            <button class="tax-toggle" type="button" data-vat-rate="5" aria-pressed="false">ভ্যাট ৫%</button>
+            <button class="tax-toggle" type="button" data-vat-rate="7.5" aria-pressed="false">ভ্যাট ৭.৫%</button>
+            <button class="tax-toggle" type="button" data-vat-rate="15" aria-pressed="false">ভ্যাট ১৫%</button>
+          </div>
+        </div>
+
+        <div class="calculator-body">
+          <div class="keypad" role="group" aria-label="ক্যালকুলেটর বোতাম">
+            <button class="key key-muted" data-action="clear" aria-label="সব মুছুন">AC</button>
+            <button class="key key-muted" data-action="delete" aria-label="শেষ অঙ্ক মুছুন">⌫</button>
+            <button class="key key-muted" data-action="percent" aria-label="শতাংশ">%</button>
+            <button class="key key-operator" data-value="÷" aria-label="ভাগ">÷</button>
+
+            <button class="key" data-value="7">৭</button>
+            <button class="key" data-value="8">৮</button>
+            <button class="key" data-value="9">৯</button>
+            <button class="key key-operator" data-value="×" aria-label="গুণ">×</button>
+
+            <button class="key" data-value="4">৪</button>
+            <button class="key" data-value="5">৫</button>
+            <button class="key" data-value="6">৬</button>
+            <button class="key key-operator" data-value="−" aria-label="বিয়োগ">−</button>
+
+            <button class="key" data-value="1">১</button>
+            <button class="key" data-value="2">২</button>
+            <button class="key" data-value="3">৩</button>
+            <button class="key key-operator" data-value="+" aria-label="যোগ">+</button>
+
+            <button class="key key-zero" data-value="0">০</button>
+            <button class="key" data-value=".">.</button>
+            <button class="key key-equals" data-action="equals" aria-label="সমান">=</button>
+          </div>
+
+          <aside class="history-panel" aria-label="হিসাবের ইতিহাস">
+            <div class="history-heading">
+              <h2>সাম্প্রতিক হিসাব</h2>
+              <button id="clearHistory" class="text-button" type="button">মুছুন</button>
+            </div>
+            <div id="historyList" class="history-list">
+              <p class="empty-history">এখনো কোনো হিসাব নেই</p>
+            </div>
+          </aside>
+        </div>
+
+        <footer class="footer-note">
+          <span>কীবোর্ড দিয়েও হিসাব করুন</span>
+          <span class="key-hint">Enter <b>=</b></span>
+        </footer>
+      </section>
+    </main>
+    <script src="script.js"></script>
+    <script>
+      if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+        window.addEventListener('load', () => navigator.serviceWorker.register('service-worker.js'));
+      }
+    </script>
+  </body>
+</html>
