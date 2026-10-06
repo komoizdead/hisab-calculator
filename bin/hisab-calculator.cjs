@@ -11,7 +11,9 @@ const APP_FILES = new Map([
   ['script.js', 'text/javascript; charset=utf-8'],
   ['service-worker.js', 'text/javascript; charset=utf-8'],
   ['manifest.webmanifest', 'application/manifest+json; charset=utf-8'],
-  ['icon.svg', 'image/svg+xml']
+  ['icon.svg', 'image/svg+xml'],
+  ['icon-192.png', 'image/png'],
+  ['icon-512.png', 'image/png']
 ]);
 
 function parsePort(value) {

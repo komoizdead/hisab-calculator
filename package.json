@@ -27,6 +27,8 @@
     "service-worker.js",
     "manifest.webmanifest",
     "icon.svg",
+    "icon-192.png",
+    "icon-512.png",
     "README.md"
   ],
   "bin": {
@@ -35,9 +37,17 @@
   "scripts": {
     "start": "node bin/hisab-calculator.cjs",
     "test": "node --test",
-    "pack:check": "npm pack --dry-run"
+    "pack:check": "npm pack --dry-run",
+    "build:web": "node scripts/build-web.cjs",
+    "android:sync": "npm run build:web && cap sync android",
+    "android:apk": "npm run android:sync && cd android && gradlew.bat assembleDebug"
   },
   "engines": {
     "node": ">=20"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^8.4.3",
+    "@capacitor/cli": "^8.4.3",
+    "@capacitor/core": "^8.4.3"
   }
 }

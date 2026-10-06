@@ -1,0 +1,8 @@
+{
+  "appId": "com.komoizdead.hisabcalculator",
+  "appName": "Hisab Calculator",
+  "webDir": "dist",
+  "android": {
+    "allowMixedContent": false
+  }
+}

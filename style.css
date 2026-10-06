@@ -565,13 +565,39 @@ h2 {
 
 .footer-note {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: 12px;
   padding-top: 16px;
   padding-bottom: 19px;
   color: var(--muted);
   background: #fbfcf8;
   border-top: 1px solid var(--line);
   font-size: 13px;
+}
+
+.app-install-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.install-button,
+.install-link {
+  padding: 7px 11px;
+  color: #315400;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.install-button:hover,
+.install-link:hover {
+  background: #e7f1d8;
 }
 
 .key-hint {
@@ -722,6 +748,17 @@ h2 {
   .tax-toolbar {
     padding-left: 16px;
     padding-right: 16px;
+  }
+
+  .footer-note {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .app-install-actions {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
   .keypad {

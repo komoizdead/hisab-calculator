@@ -11,7 +11,8 @@
     <title>হিসাব | Calculator</title>
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="icon" href="icon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="icon.svg" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="icon-192.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -109,12 +110,34 @@
 
         <footer class="footer-note">
           <span>কীবোর্ড দিয়েও হিসাব করুন</span>
-          <span class="key-hint">Enter <b>=</b></span>
+          <div class="app-install-actions">
+            <button id="installApp" class="install-button" type="button" hidden>অ্যাপ ইনস্টল করুন</button>
+            <a class="install-link" href="https://komoizdead.github.io/hisab-calculator/downloads/hisab-calculator.apk" download>অ্যান্ড্রয়েড APK</a>
+            <span class="key-hint">Enter <b>=</b></span>
+          </div>
         </footer>
       </section>
     </main>
     <script src="script.js"></script>
     <script>
+      let installPrompt;
+      const installButton = document.querySelector('#installApp');
+      window.addEventListener('beforeinstallprompt', (event) => {
+        event.preventDefault();
+        installPrompt = event;
+        installButton.hidden = false;
+      });
+      installButton.addEventListener('click', async () => {
+        if (!installPrompt) return;
+        installPrompt.prompt();
+        await installPrompt.userChoice;
+        installPrompt = null;
+        installButton.hidden = true;
+      });
+      window.addEventListener('appinstalled', () => {
+        installPrompt = null;
+        installButton.hidden = true;
+      });
       if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
         window.addEventListener('load', () => navigator.serviceWorker.register('service-worker.js'));
       }

@@ -47,6 +47,8 @@ describe('calculator web server', () => {
     assert.equal(response.status, 200);
     assert.match(response.headers.get('content-type'), /text\/html/);
     assert.match(html, /ক্যালকুলেটর/);
+    assert.match(html, /beforeinstallprompt/);
+    assert.match(html, /hisab-calculator\.apk/);
     assert.equal(response.headers.get('x-content-type-options'), 'nosniff');
   });
 
@@ -55,6 +57,18 @@ describe('calculator web server', () => {
     assert.equal(response.status, 200);
     assert.match(response.headers.get('content-type'), /javascript/);
     assert.match(await response.text(), /vat/);
+  });
+
+  it('serves installable app metadata and icons', async () => {
+    const manifestResponse = await fetch(`${origin}/manifest.webmanifest`);
+    assert.equal(manifestResponse.status, 200);
+    const manifest = await manifestResponse.json();
+    assert.equal(manifest.display, 'standalone');
+    for (const icon of manifest.icons) {
+      const iconResponse = await fetch(new URL(icon.src, `${origin}/`));
+      assert.equal(iconResponse.status, 200);
+      assert.match(iconResponse.headers.get('content-type'), /image\/png/);
+    }
   });
 
   it('does not expose package files or unknown paths', async () => {
