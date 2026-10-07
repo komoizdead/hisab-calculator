@@ -1,6 +1,6 @@
 # হিসাব | Hisab Calculator
 
-A lightweight Bengali calculator PWA with Bengali numerals, calculation history, and quick VAT calculations. No runtime dependencies are required.
+A lightweight Bengali calculator PWA with Bengali numerals, calculation history, quick VAT calculations, and everyday presets for market totals, shared bills, discounts, and savings. No runtime dependencies are required.
 
 ## Run with npm
 
@@ -44,6 +44,7 @@ No `npm install` step is needed. The server uses Node's built-in HTTP and file-s
 - Bengali digit display and keypad, with keyboard input support
 - Addition, subtraction, multiplication, division, and percentage
 - Quick VAT calculations at 5%, 7.5%, and 15%
+- Bengali-focused quick calculations for market totals, splitting expenses, discounts, and daily savings
 - Recent calculation history
 - Installable progressive web app with offline caching
 

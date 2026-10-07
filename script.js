@@ -4,6 +4,7 @@ const expressionPreview = document.querySelector('#expressionPreview');
 const historyList = document.querySelector('#historyList');
 const clearHistoryButton = document.querySelector('#clearHistory');
 const vatToggles = document.querySelectorAll('.tax-toggle');
+const presetForms = document.querySelectorAll('.preset-form');
 
 const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
 const banglaSmallNumbers = ['শূন্য', 'এক', 'দুই', 'তিন', 'চার', 'পাঁচ', 'ছয়', 'সাত', 'আট', 'নয়', 'দশ', 'এগারো', 'বারো', 'তেরো', 'চৌদ্দ', 'পনেরো', 'ষোলো', 'সতেরো', 'আঠারো', 'উনিশ', 'বিশ', 'একুশ', 'বাইশ', 'তেইশ', 'চব্বিশ', 'পঁচিশ', 'ছাব্বিশ', 'সাতাশ', 'আঠাশ', 'ঊনত্রিশ', 'ত্রিশ', 'একত্রিশ', 'বত্রিশ', 'তেত্রিশ', 'চৌত্রিশ', 'পঁয়ত্রিশ', 'ছত্রিশ', 'সাঁইত্রিশ', 'আটত্রিশ', 'ঊনচল্লিশ', 'চল্লিশ', 'একচল্লিশ', 'বিয়াল্লিশ', 'তেতাল্লিশ', 'চুয়াল্লিশ', 'পঁয়তাল্লিশ', 'ছেচল্লিশ', 'সাতচল্লিশ', 'আটচল্লিশ', 'ঊনপঞ্চাশ', 'পঞ্চাশ', 'একান্ন', 'বাহান্ন', 'তিপ্পান্ন', 'চুয়ান্ন', 'পঞ্চান্ন', 'ছাপ্পান্ন', 'সাতান্ন', 'আটান্ন', 'উনষাট', 'ষাট', 'একষট্টি', 'বাষট্টি', 'তেষট্টি', 'চৌষট্টি', 'পঁয়ষট্টি', 'ছেষট্টি', 'সাতষট্টি', 'আটষট্টি', 'উনসত্তর', 'সত্তর', 'একাত্তর', 'বাহাত্তর', 'তিয়াত্তর', 'চুয়াত্তর', 'পঁচাত্তর', 'ছিয়াত্তর', 'সাতাত্তর', 'আটাত্তর', 'উনআশি', 'আশি', 'একাশি', 'বিরাশি', 'তিরাশি', 'চুরাশি', 'পঁচাশি', 'ছিয়াশি', 'সাতাশি', 'আটাশি', 'উননব্বই', 'নব্বই', 'একানব্বই', 'বিরানব্বই', 'তিরানব্বই', 'চুরানব্বই', 'পঁচানব্বই', 'ছিয়ানব্বই', 'সাতানব্বই', 'আটানব্বই', 'নিরানব্বই'];
@@ -187,6 +188,30 @@ function applyVat(rate) {
   expressionPreview.textContent = `${baseText} + ভ্যাট ${rateText}%`;
 }
 
+const presetExpressions = {
+  market: ([price, quantity]) => `${price}×${quantity}`,
+  share: ([total, people]) => `${total}÷${people}`,
+  discount: ([price, discount]) => `${price}−${price}×${discount}÷100`,
+  savings: ([daily, days]) => `${daily}×${days}`
+};
+
+function runPreset(form) {
+  const inputs = [...form.querySelectorAll('input')];
+  if (!form.reportValidity()) return;
+  const values = inputs.map((input) => input.valueAsNumber);
+  const buildExpression = presetExpressions[form.dataset.preset];
+  if (!values.every(Number.isFinite) || !buildExpression) {
+    throw new Error(`Invalid calculation preset: ${form.dataset.preset}`);
+  }
+
+  taxBase = null;
+  setActiveVat(null);
+  expression = buildExpression(values);
+  justCalculated = false;
+  updateDisplay();
+  evaluateExpression();
+}
+
 function addHistory(previousExpression, result, resultWordsText) {
   history.unshift({ expression: previousExpression, result, resultWords: resultWordsText });
   history = history.slice(0, 5);
@@ -225,6 +250,13 @@ clearHistoryButton.addEventListener('click', () => {
 
 vatToggles.forEach((button) => {
   button.addEventListener('click', () => applyVat(Number(button.dataset.vatRate)));
+});
+
+presetForms.forEach((form) => {
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    runPreset(form);
+  });
 });
 
 document.addEventListener('keydown', (event) => {

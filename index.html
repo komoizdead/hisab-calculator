@@ -70,6 +70,54 @@
           </div>
         </div>
 
+        <section class="preset-panel" aria-labelledby="presetHeading">
+          <div class="preset-heading">
+            <div>
+              <p class="preset-kicker">প্রতিদিনের কাজে</p>
+              <h2 id="presetHeading">দ্রুত হিসাব</h2>
+            </div>
+            <span class="preset-hint">উদাহরণ বদলে নিজের অঙ্ক লিখুন</span>
+          </div>
+          <div class="preset-grid">
+            <form class="preset-card preset-form" data-preset="market">
+              <h3>বাজারের হিসাব</h3>
+              <p>দাম ও পরিমাণ গুণ করে মোট বের করুন</p>
+              <div class="preset-fields">
+                <label>প্রতি কেজি/টি (৳)<input name="price" type="number" min="0" step="any" value="80" inputmode="decimal" required /></label>
+                <label>পরিমাণ<input name="quantity" type="number" min="0" step="any" value="2" inputmode="decimal" required /></label>
+              </div>
+              <button class="preset-submit" type="submit">বাজারের মোট বের করুন <span aria-hidden="true">→</span></button>
+            </form>
+            <form class="preset-card preset-form" data-preset="share">
+              <h3>জনপ্রতি ভাগ</h3>
+              <p>খরচ বা বিল সমানভাবে ভাগ করুন</p>
+              <div class="preset-fields">
+                <label>মোট টাকা (৳)<input name="total" type="number" min="0" step="any" value="1200" inputmode="decimal" required /></label>
+                <label>জনসংখ্যা<input name="people" type="number" min="1" step="1" value="4" inputmode="numeric" required /></label>
+              </div>
+              <button class="preset-submit" type="submit">জনপ্রতি হিসাব করুন <span aria-hidden="true">→</span></button>
+            </form>
+            <form class="preset-card preset-form" data-preset="discount">
+              <h3>ছাড়ের পর দাম</h3>
+              <p>দোকানের ছাড় বাদ দিয়ে দাম জানুন</p>
+              <div class="preset-fields">
+                <label>আসল দাম (৳)<input name="price" type="number" min="0" step="any" value="2500" inputmode="decimal" required /></label>
+                <label>ছাড় (%)<input name="discount" type="number" min="0" max="100" step="any" value="10" inputmode="decimal" required /></label>
+              </div>
+              <button class="preset-submit" type="submit">ছাড়ের দাম বের করুন <span aria-hidden="true">→</span></button>
+            </form>
+            <form class="preset-card preset-form" data-preset="savings">
+              <h3>মাসিক সঞ্চয়</h3>
+              <p>প্রতিদিনের সঞ্চয় দিয়ে মাসের লক্ষ্য দেখুন</p>
+              <div class="preset-fields">
+                <label>প্রতিদিন (৳)<input name="daily" type="number" min="0" step="any" value="100" inputmode="decimal" required /></label>
+                <label>দিন<input name="days" type="number" min="1" step="1" value="30" inputmode="numeric" required /></label>
+              </div>
+              <button class="preset-submit" type="submit">সঞ্চয়ের মোট দেখুন <span aria-hidden="true">→</span></button>
+            </form>
+          </div>
+        </section>
+
         <div class="calculator-body">
           <div class="keypad" role="group" aria-label="ক্যালকুলেটর বোতাম">
             <button class="key key-muted" data-action="clear" aria-label="সব মুছুন">AC</button>

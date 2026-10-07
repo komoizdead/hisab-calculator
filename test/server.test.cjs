@@ -47,6 +47,11 @@ describe('calculator web server', () => {
     assert.equal(response.status, 200);
     assert.match(response.headers.get('content-type'), /text\/html/);
     assert.match(html, /ক্যালকুলেটর/);
+    assert.match(html, /বাজারের হিসাব/);
+    assert.match(html, /জনপ্রতি ভাগ/);
+    assert.match(html, /ছাড়ের পর দাম/);
+    assert.match(html, /মাসিক সঞ্চয়/);
+    assert.equal((html.match(/class="preset-card preset-form"/g) || []).length, 4);
     assert.match(html, /beforeinstallprompt/);
     assert.match(html, /hisab-calculator\.apk/);
     assert.equal(response.headers.get('x-content-type-options'), 'nosniff');
